@@ -24,6 +24,10 @@ public class Schedule {
     @Lob
     private String content;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDateTime localDateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
+    private LocalDate localDate;
+
+    public boolean isDate(LocalDate localDate){
+        return this.localDate.equals(localDate);
+    }
 }
