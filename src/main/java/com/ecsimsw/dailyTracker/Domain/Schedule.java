@@ -27,9 +27,7 @@ public class Schedule {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate localDate;
 
-    private Schedule(){
-
-    }
+    private Schedule(){ }
 
     public static Schedule createSchedule(User user, LocalDate localDate, String content){
         Schedule schedule = new Schedule();

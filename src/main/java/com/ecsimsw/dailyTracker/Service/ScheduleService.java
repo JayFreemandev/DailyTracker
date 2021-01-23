@@ -6,17 +6,15 @@ import com.ecsimsw.dailyTracker.Repository.ScheduleRepository;
 import com.ecsimsw.dailyTracker.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ScheduleService {
     private static final String dateFormat = "yyyy.MM.dd";
     private final ScheduleRepository scheduleRepository;
@@ -29,6 +27,7 @@ public class ScheduleService {
         return null;
     }
 
+    @Transactional
     public void setNewSchedule(String userName, String stringDate, String content){
         User searchedUser = userRepository.findByName(userName);
         LocalDate localDate = parseToLocalDate(stringDate);

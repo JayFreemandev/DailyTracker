@@ -1,17 +1,27 @@
 package com.ecsimsw.dailyTracker.Controller;
 
+import com.ecsimsw.dailyTracker.Domain.ScheduleDTO;
 import com.ecsimsw.dailyTracker.Service.ScheduleService;
+import com.ecsimsw.dailyTracker.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MainController {
     private final ScheduleService scheduleService;
+    private final UserService userService;
 
     @GetMapping("/hello")
     public String hello(){
         return "dailyTracker";
+    }
+
+    @GetMapping("/signUp")
+    public void createUser(@RequestParam String userName){
+        userService.signUp(userName);
     }
 
     @GetMapping("/get")
@@ -24,14 +34,22 @@ public class MainController {
     @PostMapping("/set")
     public void setSchedule(@RequestParam String userName,
                               @RequestParam String localDate,
-                              @RequestBody String content){
+                              @RequestParam String content){
         scheduleService.setNewSchedule(userName, localDate, content);
     }
+
+//    @PostMapping("/set")
+//    public String setSchedule(@RequestBody ScheduleDTO schedule){
+//        log.info(schedule.getUserName() + " "+schedule.getLocalDate() +" "+schedule.getContent());
+//        return "";
+////        scheduleService.setNewSchedule(userName, localDate, content);
+//    }
 }
 
-
 /*
-   1. 알고리즘
-   2. 운동
-   3. 요리
+client=new XMLHttpRequest();
+client.open('POST', "http://localhost:8080/set?userName=ecsimsw&localDate=2021.01.23", true);
+client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+client.send('{"content":"sadfl"}');
  */
