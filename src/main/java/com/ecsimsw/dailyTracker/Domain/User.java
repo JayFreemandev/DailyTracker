@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,4 +19,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Schedule> scheduleList = new LinkedList<>();
+
+    public void addSchedule(Schedule schedule){
+        scheduleList.add(schedule);
+    }
 }

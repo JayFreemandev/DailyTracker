@@ -27,6 +27,18 @@ public class Schedule {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate localDate;
 
+    private Schedule(){
+
+    }
+
+    public static Schedule createSchedule(User user, LocalDate localDate, String content){
+        Schedule schedule = new Schedule();
+        schedule.user = user;
+        schedule.localDate = localDate;
+        schedule.content = content;
+        return schedule;
+    }
+
     public boolean isDate(LocalDate localDate){
         return this.localDate.equals(localDate);
     }
