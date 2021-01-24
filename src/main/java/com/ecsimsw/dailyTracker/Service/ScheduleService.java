@@ -1,12 +1,11 @@
 package com.ecsimsw.dailyTracker.Service;
 
-import com.ecsimsw.dailyTracker.Domain.Exception.InvalidInputDate;
-import com.ecsimsw.dailyTracker.Domain.Exception.NonExistentUser;
+import com.ecsimsw.dailyTracker.Domain.Exception.InvalidInputDateException;
+import com.ecsimsw.dailyTracker.Domain.Exception.NonExistentUserException;
 import com.ecsimsw.dailyTracker.Domain.Schedule;
 import com.ecsimsw.dailyTracker.Domain.User;
 import com.ecsimsw.dailyTracker.Repository.ScheduleRepository;
 import com.ecsimsw.dailyTracker.Repository.UserRepository;
-import jdk.jfr.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +60,7 @@ public class ScheduleService {
     private void checkValidUser(String userName) {
         User searchedUser = userRepository.findByName(userName);
         if (searchedUser == null) {
-            throw new NonExistentUser();
+            throw new NonExistentUserException();
         }
     }
 
@@ -70,7 +69,7 @@ public class ScheduleService {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
             return LocalDate.parse(stringDate, formatter);
         } catch (Exception e) {
-            throw new InvalidInputDate();
+            throw new InvalidInputDateException();
         }
     }
 }

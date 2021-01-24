@@ -1,6 +1,6 @@
 package com.ecsimsw.dailyTracker.Service;
 
-import com.ecsimsw.dailyTracker.Domain.Exception.DuplicatedUser;
+import com.ecsimsw.dailyTracker.Domain.Exception.DuplicatedUserException;
 import com.ecsimsw.dailyTracker.Domain.User;
 import com.ecsimsw.dailyTracker.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class UserService {
     @Transactional
     public void signUp(String name) {
         if (isExist(name)) {
-            throw new DuplicatedUser();
+            throw new DuplicatedUserException();
         }
         userRepository.save(new User(name));
     }
