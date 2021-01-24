@@ -25,34 +25,20 @@ public class MainController {
     }
 
     @GetMapping("/signUp")
-    public String createUser(@RequestParam String userName) {
-        try {
-            userService.signUp(userName);
-            return "success";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+    public void createUser(@RequestParam String userName) {
+        userService.signUp(userName);
     }
 
     @GetMapping("/get")
     public String getSchedule(@RequestParam String userName,
                               @RequestParam String localDate) {
-        try {
-            return scheduleService.search(userName, localDate).toString();
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+        return scheduleService.search(userName, localDate).toString();
     }
 
     @PostMapping("/set")
-    public String setSchedule(@RequestParam String userName,
-                              @RequestParam String localDate,
-                              @RequestParam String content) {
-        try {
-            scheduleService.setNewSchedule(userName, localDate, content);
-            return "success";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+    public void setSchedule(@RequestParam String userName,
+                            @RequestParam String localDate,
+                            @RequestParam String content) {
+        scheduleService.setNewSchedule(userName, localDate, content);
     }
 }
