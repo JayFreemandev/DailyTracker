@@ -3,6 +3,7 @@ package com.ecsimsw.dailyTracker.Repository;
 import com.ecsimsw.dailyTracker.Domain.Schedule;
 import com.ecsimsw.dailyTracker.Domain.User;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ScheduleRepository {
     private final EntityManager em;
 

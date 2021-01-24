@@ -5,6 +5,7 @@ import com.ecsimsw.dailyTracker.Domain.User;
 import com.ecsimsw.dailyTracker.Repository.ScheduleRepository;
 import com.ecsimsw.dailyTracker.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class ScheduleService {
     private static final String dateFormat = "yyyy.MM.dd";
     private final ScheduleRepository scheduleRepository;
@@ -23,8 +25,8 @@ public class ScheduleService {
     public List<Schedule> getSearchedSchedule(String userName, String stringDate){
         User searchedUser = userRepository.findByName(userName);
         LocalDate localDate = parseToLocalDate(stringDate);
-        scheduleRepository.getUserDailySchedule(searchedUser, localDate);
-        return null;
+
+        return scheduleRepository.getUserDailySchedule(searchedUser, localDate);
     }
 
     @Transactional

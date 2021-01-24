@@ -37,13 +37,6 @@ public class MainController {
                               @RequestParam String content){
         scheduleService.setNewSchedule(userName, localDate, content);
     }
-
-//    @PostMapping("/set")
-//    public String setSchedule(@RequestBody ScheduleDTO schedule){
-//        log.info(schedule.getUserName() + " "+schedule.getLocalDate() +" "+schedule.getContent());
-//        return "";
-////        scheduleService.setNewSchedule(userName, localDate, content);
-//    }
 }
 
 /*
