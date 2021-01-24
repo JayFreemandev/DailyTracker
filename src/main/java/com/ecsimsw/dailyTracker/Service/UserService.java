@@ -13,7 +13,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void signUp(String name){
+    public void signUp(String name) {
         userRepository.save(new User(name));
+    }
+
+    public boolean isExist(String name) {
+        return userRepository.findByName(name) != null;
     }
 }

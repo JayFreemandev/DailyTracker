@@ -25,21 +25,29 @@ public class MainController {
     }
 
     @GetMapping("/signUp")
-    public void createUser(@RequestParam String userName){
+    public String createUser(@RequestParam String userName) {
+        if (userService.isExist(userName)) {
+            return "Name already exists";
+        }
         userService.signUp(userName);
+        return "true";
     }
 
     @GetMapping("/get")
     public String getSchedule(@RequestParam String userName,
-                                      @RequestParam String localDate) throws JsonProcessingException {
-        List result =  scheduleService.getSearchedSchedule(userName, localDate);
+                              @RequestParam String localDate) {
+        List result = scheduleService.getSearchedSchedule(userName, localDate);
         return result.toString();
     }
 
     @PostMapping("/set")
-    public void setSchedule(@RequestParam String userName,
+    public String setSchedule(@RequestParam String userName,
                               @RequestParam String localDate,
-                              @RequestParam String content){
+                              @RequestParam String content) {
+        if (!userService.isExist(userName)) {
+            return "Non-existent user";
+        }
         scheduleService.setNewSchedule(userName, localDate, content);
+        return "true";
     }
 }

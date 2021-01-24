@@ -20,8 +20,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Schedule> scheduleList = new LinkedList<>();
 
-    public User(){
-
+    public User() {
     }
 
     public User(String name){
