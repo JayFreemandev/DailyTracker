@@ -1,16 +1,10 @@
 package com.ecsimsw.dailyTracker.Controller;
 
-import com.ecsimsw.dailyTracker.Domain.Schedule;
 import com.ecsimsw.dailyTracker.Service.ScheduleService;
 import com.ecsimsw.dailyTracker.Service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -24,21 +18,38 @@ public class MainController {
         return "dailyTracker";
     }
 
-    @GetMapping("/signUp")
-    public void createUser(@RequestParam String userName) {
-        userService.signUp(userName);
+    @GetMapping("user/register")
+    public void createUser(@RequestParam String name) {
+        userService.signUp(name);
     }
 
-    @GetMapping("/get")
-    public String getSchedule(@RequestParam String userName,
-                              @RequestParam String localDate) {
-        return scheduleService.search(userName, localDate).toString();
+    @GetMapping("user/list")
+    public String showUserList() {
+        return userService.showUserList().toString();
     }
 
-    @PostMapping("/set")
-    public void setSchedule(@RequestParam String userName,
-                            @RequestParam String localDate,
-                            @RequestParam String content) {
-        scheduleService.setNewSchedule(userName, localDate, content);
+    @GetMapping("schedule/show")
+    public String searchSchedule(@RequestParam String name,
+                                 @RequestParam String date) {
+        return scheduleService.search(name, date).toString();
+    }
+
+    @GetMapping("schedule/show-all")
+    public String searchDaySchedule(@RequestParam String name) {
+        return scheduleService.search(name).toString();
+    }
+
+    @PostMapping("schedule/post")
+    public void postSchedule(@RequestParam String name,
+                             @RequestParam String date,
+                             @RequestParam String content) {
+        scheduleService.postNewSchedule(name, date, content);
+    }
+
+    @PostMapping("schedule/delete")
+    public void deleteSchedule(@RequestParam String name,
+                               @RequestParam String date,
+                               @RequestParam int index) {
+        scheduleService.deleteSchedule(name, date, index);
     }
 }

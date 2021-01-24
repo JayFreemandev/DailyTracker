@@ -27,9 +27,7 @@ public class ScheduleRepository {
         em.persist(schedule);
     }
 
-    public List<Schedule> getUserDailySchedule(User user, LocalDate localDate) {
-        return user.getScheduleList().stream()
-                .filter(schedule -> schedule.isDate(localDate))
-                .collect(Collectors.toList());
+    public void delete(Schedule schedule) {
+        em.remove(schedule);
     }
 }

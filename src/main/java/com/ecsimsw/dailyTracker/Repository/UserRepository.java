@@ -33,4 +33,8 @@ public class UserRepository {
 
         return result.get(0);
     }
+
+    public List<User> getUerList() {
+        return em.createQuery("select u from User u").getResultList();
+    }
 }

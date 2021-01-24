@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -23,5 +26,11 @@ public class UserService {
 
     public boolean isExist(String name) {
         return userRepository.findByName(name) != null;
+    }
+
+    public List<String> showUserList() {
+        return userRepository.getUerList().stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
     }
 }

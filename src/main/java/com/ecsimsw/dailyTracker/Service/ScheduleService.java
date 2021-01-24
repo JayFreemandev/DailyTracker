@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,30 +23,23 @@ public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final UserRepository userRepository;
 
-    public List<Schedule> search(String userName, String stringDate) {
+    public List<Schedule> search(String userName) {
         checkValidUser(userName);
 
-        if (stringDate.equals("all")) {
-            return getAllSchedule(userName);
-        }
-
-        return getSearchedSchedule(userName, stringDate);
-    }
-
-    public List<Schedule> getAllSchedule(String userName) {
         User searchedUser = userRepository.findByName(userName);
         return searchedUser.getScheduleList();
     }
 
-    public List<Schedule> getSearchedSchedule(String userName, String stringDate) {
-        User searchedUser = userRepository.findByName(userName);
+    public List<Schedule> search(String userName, String stringDate) {
+        checkValidUser(userName);
 
+        User searchedUser = userRepository.findByName(userName);
         LocalDate localDate = parseToLocalDate(stringDate);
-        return scheduleRepository.getUserDailySchedule(searchedUser, localDate);
+        return getUserDailySchedule(searchedUser, localDate);
     }
 
     @Transactional
-    public void setNewSchedule(String userName, String stringDate, String content) {
+    public void postNewSchedule(String userName, String stringDate, String content) {
         checkValidUser(userName);
 
         User searchedUser = userRepository.findByName(userName);
@@ -55,6 +49,24 @@ public class ScheduleService {
         searchedUser.addSchedule(schedule);
 
         scheduleRepository.save(schedule);
+    }
+
+    @Transactional
+    public void deleteSchedule(String userName, String stringDate, int scheduleIndex) {
+        checkValidUser(userName);
+
+        User user = userRepository.findByName(userName);
+        LocalDate localDate = parseToLocalDate(stringDate);
+
+        List<Schedule> schedules = getUserDailySchedule(user, localDate);
+        user.getScheduleList().remove(scheduleIndex);
+        scheduleRepository.delete(schedules.get(scheduleIndex));
+    }
+
+    public List<Schedule> getUserDailySchedule(User user, LocalDate localDate) {
+        return user.getScheduleList().stream()
+                .filter(schedule -> schedule.isDate(localDate))
+                .collect(Collectors.toList());
     }
 
     private void checkValidUser(String userName) {
