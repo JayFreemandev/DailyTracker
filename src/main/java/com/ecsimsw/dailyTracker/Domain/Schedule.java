@@ -40,4 +40,13 @@ public class Schedule {
     public boolean isDate(LocalDate localDate){
         return this.localDate.equals(localDate);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                    "user:" + user.getName() +
+                    ", content:" + content +
+                    ", localDate:" + localDate +
+                '}';
+    }
 }

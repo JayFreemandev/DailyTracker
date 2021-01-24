@@ -1,11 +1,16 @@
 package com.ecsimsw.dailyTracker.Controller;
 
-import com.ecsimsw.dailyTracker.Domain.ScheduleDTO;
+import com.ecsimsw.dailyTracker.Domain.Schedule;
 import com.ecsimsw.dailyTracker.Service.ScheduleService;
 import com.ecsimsw.dailyTracker.Service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -26,9 +31,9 @@ public class MainController {
 
     @GetMapping("/get")
     public String getSchedule(@RequestParam String userName,
-                              @RequestParam String localDate){
-
-        return scheduleService.getSearchedSchedule(userName, localDate).toString();
+                                      @RequestParam String localDate) throws JsonProcessingException {
+        List result =  scheduleService.getSearchedSchedule(userName, localDate);
+        return result.toString();
     }
 
     @PostMapping("/set")
@@ -38,11 +43,3 @@ public class MainController {
         scheduleService.setNewSchedule(userName, localDate, content);
     }
 }
-
-/*
-client=new XMLHttpRequest();
-client.open('POST', "http://localhost:8080/set?userName=ecsimsw&localDate=2021.01.23", true);
-client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-client.send('{"content":"sadfl"}');
- */
