@@ -36,7 +36,7 @@ public class MainController {
 
     @GetMapping("schedule/show-all")
     public String searchDaySchedule(@RequestParam String name) {
-        return scheduleService.search(name).toString();
+        return scheduleService.searchAll(name).toString();
     }
 
     @PostMapping("schedule/post")
@@ -52,4 +52,11 @@ public class MainController {
                                @RequestParam int index) {
         scheduleService.deleteSchedule(name, date, index);
     }
+
+    @PostMapping("schedule/delete-all")
+    public void deleteSchedule(@RequestParam String name,
+                               @RequestParam String date) {
+        scheduleService.deleteDailySchedules(name, date);
+    }
+
 }

@@ -30,4 +30,8 @@ public class ScheduleRepository {
     public void delete(Schedule schedule) {
         em.remove(schedule);
     }
+
+    public Schedule findById(Long id) {
+        return em.find(Schedule.class, id);
+    }
 }
