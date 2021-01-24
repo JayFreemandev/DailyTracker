@@ -26,28 +26,33 @@ public class MainController {
 
     @GetMapping("/signUp")
     public String createUser(@RequestParam String userName) {
-        if (userService.isExist(userName)) {
-            return "Name already exists";
+        try {
+            userService.signUp(userName);
+            return "success";
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        userService.signUp(userName);
-        return "true";
     }
 
     @GetMapping("/get")
     public String getSchedule(@RequestParam String userName,
                               @RequestParam String localDate) {
-        List result = scheduleService.getSearchedSchedule(userName, localDate);
-        return result.toString();
+        try {
+            return scheduleService.search(userName, localDate).toString();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     @PostMapping("/set")
     public String setSchedule(@RequestParam String userName,
                               @RequestParam String localDate,
                               @RequestParam String content) {
-        if (!userService.isExist(userName)) {
-            return "Non-existent user";
+        try {
+            scheduleService.setNewSchedule(userName, localDate, content);
+            return "success";
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        scheduleService.setNewSchedule(userName, localDate, content);
-        return "true";
     }
 }
