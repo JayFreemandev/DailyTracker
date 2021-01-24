@@ -8,7 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue
@@ -23,11 +24,11 @@ public class User {
     public User() {
     }
 
-    public User(String name){
+    public User(String name) {
         this.name = name;
     }
 
-    public void addSchedule(Schedule schedule){
+    public void addSchedule(Schedule schedule) {
         scheduleList.add(schedule);
     }
 }

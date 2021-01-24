@@ -13,22 +13,23 @@ import java.time.LocalDate;
 public class Schedule {
     @Id
     @GeneratedValue
-    @Column(name ="schedule_id")
+    @Column(name = "schedule_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Lob
     private String content;
-    
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate localDate;
 
-    private Schedule(){ }
+    private Schedule() {
+    }
 
-    public static Schedule createSchedule(User user, LocalDate localDate, String content){
+    public static Schedule createSchedule(User user, LocalDate localDate, String content) {
         Schedule schedule = new Schedule();
         schedule.user = user;
         schedule.localDate = localDate;
@@ -36,16 +37,16 @@ public class Schedule {
         return schedule;
     }
 
-    public boolean isDate(LocalDate localDate){
+    public boolean isDate(LocalDate localDate) {
         return this.localDate.equals(localDate);
     }
 
     @Override
     public String toString() {
         return "{" +
-                    "user:" + user.getName() +
-                    ", content:" + content +
-                    ", localDate:" + localDate +
+                "user:" + user.getName() +
+                ", content:" + content +
+                ", localDate:" + localDate +
                 '}';
     }
 }

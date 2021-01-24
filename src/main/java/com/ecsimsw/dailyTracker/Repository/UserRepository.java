@@ -14,20 +14,20 @@ import java.util.List;
 public class UserRepository {
     private final EntityManager em;
 
-    public void save(User user){
-        if(user.getId() != null){
+    public void save(User user) {
+        if (user.getId() != null) {
             em.merge(user);
             return;
         }
         em.persist(user);
     }
 
-    public User findByName(String name){
+    public User findByName(String name) {
         List<User> result = em.createQuery("select u from User u where u.name = :name", User.class)
                 .setParameter("name", name)
                 .getResultList();
 
-        if(result.isEmpty()){
+        if (result.isEmpty()) {
             return null;
         }
 

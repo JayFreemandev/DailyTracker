@@ -19,15 +19,15 @@ import java.util.stream.Collectors;
 public class ScheduleRepository {
     private final EntityManager em;
 
-    public void save(Schedule schedule){
-        if(schedule.getId() != null){
+    public void save(Schedule schedule) {
+        if (schedule.getId() != null) {
             em.merge(schedule);
             return;
         }
         em.persist(schedule);
     }
 
-    public List<Schedule> getUserDailySchedule(User user, LocalDate localDate){
+    public List<Schedule> getUserDailySchedule(User user, LocalDate localDate) {
         return user.getScheduleList().stream()
                 .filter(schedule -> schedule.isDate(localDate))
                 .collect(Collectors.toList());

@@ -20,7 +20,7 @@ public class MainController {
     private final UserService userService;
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "dailyTracker";
     }
 
