@@ -2,10 +2,7 @@ package com.ecsimsw.dailyTracker.Controller;
 
 import com.ecsimsw.dailyTracker.Service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public void createUser(@RequestParam String user) {
         userService.signUp(user);
     }
@@ -22,5 +19,4 @@ public class UserController {
     public String showUserList() {
         return userService.showUserList().toString();
     }
-
 }
