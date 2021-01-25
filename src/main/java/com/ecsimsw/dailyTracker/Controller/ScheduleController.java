@@ -1,8 +1,15 @@
 package com.ecsimsw.dailyTracker.Controller;
 
+import com.ecsimsw.dailyTracker.Domain.Schedule;
+import com.ecsimsw.dailyTracker.ResponseEntity.Message;
+import com.ecsimsw.dailyTracker.ResponseEntity.ResponseEntityFactory;
 import com.ecsimsw.dailyTracker.Service.ScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -11,9 +18,11 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping()
-    public String searchSchedule(@RequestParam String user,
-                                 @RequestParam String date) {
-        return scheduleService.search(user, date).toString();
+    public ResponseEntity searchSchedule(@RequestParam String user,
+                                         @RequestParam String date) {
+        List results = scheduleService.search(user, date);
+        Message resMsg = new Message("success", results);
+        return ResponseEntityFactory.create(resMsg, HttpStatus.OK);
     }
 
     @GetMapping("/all")
