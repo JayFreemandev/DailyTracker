@@ -38,7 +38,7 @@ public class ResponseEntityFactory {
         return new ResponseEntity(successMessage, headers, HttpStatus.OK);
     }
 
-    public static ResponseEntity create(Message message) {
-        return new ResponseEntity(message, headers, HttpStatus.OK);
+    public static ResponseEntity create(Message message, HttpStatus status) {
+        return new ResponseEntity(message, headers, status);
     }
 }
