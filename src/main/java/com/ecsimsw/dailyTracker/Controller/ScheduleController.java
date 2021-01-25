@@ -11,33 +11,33 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping("/show")
-    public String searchSchedule(@RequestParam String name,
+    public String searchSchedule(@RequestParam String user,
                                  @RequestParam String date) {
-        return scheduleService.search(name, date).toString();
+        return scheduleService.search(user, date).toString();
     }
 
     @GetMapping("/show-all")
-    public String searchDaySchedule(@RequestParam String name) {
-        return scheduleService.searchAll(name).toString();
+    public String searchDaySchedule(@RequestParam String user) {
+        return scheduleService.searchAll(user).toString();
     }
 
     @PostMapping("/post")
-    public void postSchedule(@RequestParam String name,
+    public void postSchedule(@RequestParam String user,
                              @RequestParam String date,
                              @RequestParam String content) {
-        scheduleService.postNewSchedule(name, date, content);
+        scheduleService.postNewSchedule(user, date, content);
     }
 
     @PostMapping("/delete")
-    public void deleteSchedule(@RequestParam String name,
+    public void deleteSchedule(@RequestParam String user,
                                @RequestParam String date,
                                @RequestParam int index) {
-        scheduleService.deleteSchedule(name, date, index);
+        scheduleService.deleteSchedule(user, date, index);
     }
 
     @PostMapping("/delete-all")
-    public void deleteSchedule(@RequestParam String name,
+    public void deleteSchedule(@RequestParam String user,
                                @RequestParam String date) {
-        scheduleService.deleteDailySchedules(name, date);
+        scheduleService.deleteDailySchedules(user, date);
     }
 }

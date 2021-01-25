@@ -14,8 +14,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/register")
-    public void createUser(@RequestParam String name) {
-        userService.signUp(name);
+    public void createUser(@RequestParam String user) {
+        userService.signUp(user);
     }
 
     @GetMapping("/list")
