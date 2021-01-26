@@ -15,27 +15,39 @@ import java.nio.charset.Charset;
 
 public class ResponseEntityFactory {
     private static final HttpHeaders headers;
-    private static final MediaType mediaType;
-    private static final Message failMessage;
-    private static final Message successMessage;
+    private static final ResponseEntity failRes;
+    private static final ResponseEntity successRes;
 
     static {
-        mediaType = new MediaType("application", "json",
-                Charset.forName("UTF-8"));
-
         headers = new HttpHeaders();
-        headers.setContentType(mediaType);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        failMessage = new Message("fail");
-        successMessage = new Message("success");
+        failRes = new ResponseEntity(new Message("fail"), headers, HttpStatus.BAD_REQUEST);
+        successRes = new ResponseEntity(new Message("success"), headers, HttpStatus.OK);
     }
 
     public static ResponseEntity fail() {
-        return new ResponseEntity(failMessage, headers, HttpStatus.BAD_REQUEST);
+        return failRes;
+    }
+
+    public static ResponseEntity fail(String message) {
+        return fail(new Message(message));
+    }
+
+    public static ResponseEntity fail(Message message) {
+        return create(message, HttpStatus.BAD_REQUEST);
     }
 
     public static ResponseEntity success() {
-        return new ResponseEntity(successMessage, headers, HttpStatus.OK);
+        return successRes;
+    }
+
+    public static ResponseEntity success(String message) {
+        return success(new Message(message));
+    }
+
+    public static ResponseEntity success(Message message) {
+        return create(message, HttpStatus.OK);
     }
 
     public static ResponseEntity create(Message message, HttpStatus status) {
