@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,33 +21,38 @@ public class ScheduleController {
     @GetMapping()
     public ResponseEntity searchSchedule(@RequestParam String user,
                                          @RequestParam String date) {
-        List results = scheduleService.search(user, date);
-        Message resMsg = new Message("success", results);
-        return ResponseEntityFactory.create(resMsg, HttpStatus.OK);
+        List results = scheduleService.search(user, date).stream()
+                .map(Schedule::toString)
+                .collect(Collectors.toList());
+        return ResponseEntityFactory.success(new Message("success", results));
     }
 
     @GetMapping("/all")
-    public String searchDaySchedule(@RequestParam String user) {
-        return scheduleService.searchAll(user).toString();
+    public ResponseEntity searchDaySchedule(@RequestParam String user) {
+        String result = scheduleService.searchAll(user).toString();
+        return ResponseEntityFactory.success(new Message("success", result));
     }
 
     @PostMapping()
-    public void postSchedule(@RequestParam String user,
-                             @RequestParam String date,
-                             @RequestParam String content) {
+    public ResponseEntity postSchedule(@RequestParam String user,
+                                       @RequestParam String date,
+                                       @RequestParam String content) {
         scheduleService.postNewSchedule(user, date, content);
+        return ResponseEntityFactory.success(new Message("success"));
     }
 
     @DeleteMapping()
-    public void deleteSchedule(@RequestParam String user,
-                               @RequestParam String date,
-                               @RequestParam int index) {
+    public ResponseEntity deleteSchedule(@RequestParam String user,
+                                         @RequestParam String date,
+                                         @RequestParam int index) {
         scheduleService.deleteSchedule(user, date, index);
+        return ResponseEntityFactory.success(new Message("success"));
     }
 
     @DeleteMapping("/all")
-    public void deleteSchedule(@RequestParam String user,
-                               @RequestParam String date) {
+    public ResponseEntity deleteSchedule(@RequestParam String user,
+                                         @RequestParam String date) {
         scheduleService.deleteDailySchedules(user, date);
+        return ResponseEntityFactory.success(new Message("success"));
     }
 }
