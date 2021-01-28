@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/register")
-    public ResponseEntity createUser(@RequestParam String user) {
+    @PostMapping("/register/{user}")
+    public ResponseEntity createUser(@PathVariable String user) {
         userService.signUp(user);
         return ResponseEntityFactory.success("success");
     }
