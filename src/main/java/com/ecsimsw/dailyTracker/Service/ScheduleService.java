@@ -1,5 +1,6 @@
 package com.ecsimsw.dailyTracker.Service;
 
+import com.ecsimsw.dailyTracker.Domain.Exception.InvalidIndexException;
 import com.ecsimsw.dailyTracker.Domain.Exception.InvalidInputDateException;
 import com.ecsimsw.dailyTracker.Domain.Exception.NonExistentUserException;
 import com.ecsimsw.dailyTracker.Domain.Schedule;
@@ -64,9 +65,14 @@ public class ScheduleService {
         LocalDate date = parseToLocalDate(stringDate);
 
         List<Schedule> dailySchedules = getDailySchedules(user, date);
-        Schedule schedule = scheduleRepository.findById(dailySchedules.get(scheduleIndex).getId());
-        user.getScheduleList().remove(schedule);
-        scheduleRepository.delete(schedule);
+
+        try {
+            Schedule schedule = scheduleRepository.findById(dailySchedules.get(scheduleIndex).getId());
+            user.getScheduleList().remove(schedule);
+            scheduleRepository.delete(schedule);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidIndexException();
+        }
     }
 
     public User getUserByName(String userName) {
