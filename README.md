@@ -13,6 +13,7 @@ REST API를 공부하고 예제를 만들어 본 저장소입니다. (Java11, Sp
 &nbsp;&nbsp;&nbsp;&nbsp; - [소트웍스 앤솔러지](http://www.kyobobook.co.kr/product/detailViewKor.laf?barcode=9788992939249)의 객체지향
 생활 체조 9규칙
 
+</br>
 
 ### 기능에 맞는 HTTP 메소드 선택과 가독성있는 URL 네이밍을 위한 규칙
 
@@ -22,12 +23,16 @@ REST API를 공부하고 예제를 만들어 본 저장소입니다. (Java11, Sp
 
 3. 경로의 끝에 /(slash) 또는 파일의 확장자를 포함하지 않는다.
 
+</br>
+   
 ### 적절한 HTTP 상태 코드와 헤더, 응답 방법에 대한 고민
 
 1. 응답의 header(content-type), body(message, data), status를 상황에 맞도록 정의한다.
 
 2. @ResponseBody, @RestController, ResponseEntity
 
+</br>
+   
 ### 참고 자료
 
 참고한 API 가이드
@@ -44,6 +49,8 @@ URL 컨벤션과 RESTful API
 
 2. [이상학의 개발 블로그 - RESTful API 설계 가이드](https://sanghaklee.tistory.com/57)
 
+
+</br> </br>
 # API 가이드
 
 ## Host와 Port
@@ -65,6 +72,7 @@ port :
 |단일 일정 삭제|DELETE|/schedule/{user}/{date}/{index}||
 |하루 일정 삭제|DELETE|/schedule/{user}/{date}||
 
+</br>
 <details markdown="1">
 <summary> 보다 자세한 가이드 </summary>
 
@@ -88,6 +96,8 @@ port :
      }
     }
 
+</br>
+
 ## 사용자 등록
 
 ### Request
@@ -109,9 +119,10 @@ port :
         "data": null
      }
     }
+    
+</br>
 
 ## 사용자 목록
-
 ### Request
 
 `GET : /user/list`
@@ -129,6 +140,8 @@ port :
         "data": "[ecsimsw, kim, jin, hwan]"
      }
     }
+
+</br>
 
 ## 일정 등록
 
@@ -152,6 +165,9 @@ port :
         "data" : null
      }
     }
+
+</br>
+
 
 ## 일정 검색
 
@@ -178,9 +194,10 @@ port :
          ]"   
      }
     }
+    
+</br>
 
 ## 사용자 전체 일정 검색
-
 ### Request
 
 `GET : /schedule/{user}`
@@ -204,9 +221,9 @@ port :
          ]"   
      }
     }
+</br>
 
 ## 단일 일정 삭제
-
 ### Request
 
 `DELETE : /schedule/{user}/{date}/{index}`
@@ -226,6 +243,8 @@ port :
         "data" : null  
      }
     }
+
+</br>
 
 ## 하루 일정 삭제
 
