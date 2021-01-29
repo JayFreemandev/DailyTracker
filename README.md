@@ -24,7 +24,7 @@ REST API를 공부하고 예제를 만들어 본 저장소입니다. (Java11, Sp
 3. 경로의 끝에 /(slash) 또는 파일의 확장자를 포함하지 않는다.
 
 </br>
-   
+
 ### 적절한 HTTP 상태 코드와 헤더, 응답 방법에 대한 고민
 
 1. 응답의 header(content-type), body(message, data), status를 상황에 맞도록 정의한다.
@@ -32,7 +32,7 @@ REST API를 공부하고 예제를 만들어 본 저장소입니다. (Java11, Sp
 2. @ResponseBody, @RestController, ResponseEntity
 
 </br>
-   
+
 ### 참고 자료
 
 참고한 API 가이드
@@ -86,7 +86,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -110,7 +110,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -119,7 +119,7 @@ port :
         "data": null
      }
     }
-    
+
 </br>
 
 ## 사용자 목록
@@ -131,7 +131,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -156,7 +156,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -181,7 +181,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -194,7 +194,7 @@ port :
          ]"   
      }
     }
-    
+
 </br>
 
 ## 사용자 전체 일정 검색
@@ -208,7 +208,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -234,7 +234,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -258,7 +258,7 @@ port :
 
     {
      "header" : {
-        HTTP/1.1 200
+        HTTP/1.1
         Content-Type: application/json
         Status Code: 200 
      },
@@ -268,5 +268,101 @@ port :
      }
     }
 
-</details>    
-    
+</details>   
+
+## 에러 코드
+
+1. 유저 등록 : 이미 존재하는 이름으로 유저를 등록하는 경우
+
+MESSAGE : ALREADY_REGISTERED_USER
+</br>HTTP STATUS : 406
+
+#### Response
+
+    {
+     "header" : {
+        HTTP/1.1
+        Content-Type: application/json
+        Status Code: 406 
+     },
+     "body" : {
+        "message": "ALREADY_REGISTERED_USER",
+        "data": null
+     }
+    }
+
+2. 사용자 일정 제거 : 잘못된 제거 요청 인덱스
+
+MESSAGE : INVALID_SCHEDULE_INDEX
+<br>HTTP STATUS : 404
+
+#### Response
+
+    {
+     "header" : {
+        HTTP/1.1
+        Content-Type: application/json
+        Status Code: 404 
+     },
+     "body" : {
+        "message": "INVALID_SCHEDULE_INDEX",
+        "data": null
+     }
+    }
+
+3. 사용자 일정 관리 (조회, 등록, 제거) : 잘못된 날짜 포맷 (올바른 표기는 yyyy.MM.dd)
+
+MESSAGE : INVALID_DATE_FORMAT
+</br>HTTP STATUS : 400
+
+#### Response
+
+    {
+     "header" : {
+        HTTP/1.1
+        Content-Type: application/json
+        Status Code: 400 
+     },
+     "body" : {
+        "message": "INVALID_DATE_FORMAT",
+        "data": null
+     }
+    }
+
+4. 사용자 일정 관리 (조회, 등록, 제거) : 존재하지 않는 사용자의 일정 관리 요청
+
+MESSAGE : NOT_FOUND_USER
+</br>HTTP STATUS : 404
+
+#### Response
+
+    {
+     "header" : {
+        HTTP/1.1
+        Content-Type: application/json
+        Status Code: 404 
+     },
+     "body" : {
+        "message": "NOT_FOUND_USER",
+        "data": null
+     }
+    }
+
+5. 정의되지 않은 오류
+
+MESSAGE : UNDEFINED_ERROR
+</br>HTTP STATUS : 404
+
+#### Response
+
+    {
+     "header" : {
+        HTTP/1.1
+        Content-Type: application/json
+        Status Code: 404 
+     },
+     "body" : {
+        "message": "UNDEFINED_ERROR",
+        "data": null
+     }
+    }
