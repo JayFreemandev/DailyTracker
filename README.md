@@ -59,6 +59,8 @@ host ip :
 
 port :
 
+</br>
+
 ## 항목별 Request
 
 |목적|HTTP-method|URL-Pattern|Paramter-Value|
@@ -274,6 +276,19 @@ port :
 
 ## 에러 코드
 
+|HTTP-status|Message|
+|---|---|
+|406|ALREADY_REGISTERED_USER|
+|404|INVALID_SCHEDULE_INDEX|
+|400|INVALID_DATE_FORMAT|
+|404|NOT_FOUND_USER|
+|404|UNDEFINED_ERROR|
+
+
+</br>
+<details markdown="1">
+<summary> <b> 보다 자세한 가이드 </b> </summary>
+
 ### 1. 유저 등록 : 이미 존재하는 이름으로 유저를 등록하는 경우
 
 MESSAGE : ALREADY_REGISTERED_USER
@@ -356,7 +371,7 @@ MESSAGE : NOT_FOUND_USER
      }
     }
 
-</b>
+</br>
 
 ### 5. 정의되지 않은 오류
 
@@ -376,3 +391,5 @@ MESSAGE : UNDEFINED_ERROR
         "data": null
      }
     }
+
+</details>   
