@@ -1,11 +1,9 @@
-package com.ecsimsw.dailyTracker.ResponseEntity;
+package com.ecsimsw.dailyTracker.Domain.ResponseEntity;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
-import java.nio.charset.Charset;
 
 /*
     XXX :: Response 마다 매번 MediaType, HttpHeaders 를 인스턴스 하지 않도록.

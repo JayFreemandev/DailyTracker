@@ -1,4 +1,4 @@
-package com.ecsimsw.dailyTracker.ResponseEntity;
+package com.ecsimsw.dailyTracker.Domain.ResponseEntity;
 
 import lombok.Getter;
 import lombok.Setter;
