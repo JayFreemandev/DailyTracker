@@ -1,6 +1,6 @@
 # DailyTracker : 하루 일과 정리 REST API Server.
 
-REST API를 공부하고 예제를 만들어 본 저장소입니다. (Java11, Spring boot 2.1.7, JPA, Gradle)
+REST API를 공부하고 예제를 만들어 본 저장소입니다. 
 
 프로젝트에서 집중한 부분은 다음과 같습니다.
 
@@ -383,3 +383,16 @@ MESSAGE : UNDEFINED_ERROR
     }
 
 </details>   
+
+</br>
+
+# 만든 사람
+
+  김진환 ([Tistory](https://ecsimsw.tistory.com) / [Github](https://github.com/ecsimsw))
+
+  개발 환경 : (Java11, Spring boot 2.1.7, JPA, Gradle)
+
+  날짜 : 2021.01
+
+  
+
