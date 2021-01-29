@@ -80,11 +80,11 @@ port :
 
 ## 서버 확인
 
-### Request
+#### Request
 
-`GET : /hello`
+GET : /hello
 
-### Response
+#### Response
 
     {
      "header" : {
@@ -102,13 +102,11 @@ port :
 
 ## 사용자 등록
 
-### Request
+#### Request
 
-`POST : /user/register/{name}`
+POST : /user/register/{name}
 
-    /user/register/ecsimsw
-
-### Response
+#### Response
 
     {
      "header" : {
@@ -125,11 +123,11 @@ port :
 </br>
 
 ## 사용자 목록
-### Request
+#### Request
 
-`GET : /user/list`
+GET : /user/list
 
-### Response
+#### Response
 
     {
      "header" : {
@@ -147,14 +145,14 @@ port :
 
 ## 일정 등록
 
-### Request
+#### Request
 
-`POST : /schedule/{user}/{date}?content=운동하기 `
+POST : /schedule/{user}/{date}?content=운동하기
 
     url : /schedule/ecsimsw/2021.01.28
     body : {content=운동하기}
 
-### Response
+#### Response
 
     {
      "header" : {
@@ -173,13 +171,11 @@ port :
 
 ## 일정 검색
 
-### Request
+#### Request
 
-`GET : /schedule/{user}/{date}`
+GET : /schedule/{user}/{date}
 
-    /schedule/ecsimsw/2021.01.28
-
-### Response
+#### Response
 
     {
      "header" : {
@@ -200,13 +196,11 @@ port :
 </br>
 
 ## 사용자 전체 일정 검색
-### Request
+#### Request
 
-`GET : /schedule/{user}`
+GET : /schedule/{user}
 
-    /schedule/ecsimsw/2021.01.28
-
-### Response
+#### Response
 
     {
      "header" : {
@@ -226,13 +220,11 @@ port :
 </br>
 
 ## 단일 일정 삭제
-### Request
+#### Request
 
-`DELETE : /schedule/{user}/{date}/{index}`
+DELETE : /schedule/{user}/{date}/{index}
 
-    /schedule/ecsimsw/2021.01.28/1
-
-### Response
+#### Response
 
     {
      "header" : {
@@ -250,13 +242,11 @@ port :
 
 ## 하루 일정 삭제
 
-### Request
+#### Request
 
-`DELETE : /schedule/{user}/{date}`
+DELETE : /schedule/{user}/{date}
 
-    /schedule/ecsimsw/2021.01.28
-
-### Response
+#### Response
 
     {
      "header" : {
@@ -289,12 +279,12 @@ port :
 <details markdown="1">
 <summary> <b> 보다 자세한 가이드 </b> </summary>
 
-### 1. 유저 등록 : 이미 존재하는 이름으로 유저를 등록하는 경우
+## 1. 유저 등록 : 이미 존재하는 이름으로 유저를 등록하는 경우
 
 MESSAGE : ALREADY_REGISTERED_USER
 </br>HTTP STATUS : 406
 
-<b>Response</b>
+#### Response
 
     {
      "header" : {
@@ -310,12 +300,12 @@ MESSAGE : ALREADY_REGISTERED_USER
 
 </br>
 
-### 2. 사용자 일정 제거 : 잘못된 제거 요청 인덱스
+## 2. 사용자 일정 제거 : 잘못된 제거 요청 인덱스
 
 MESSAGE : INVALID_SCHEDULE_INDEX
 <br>HTTP STATUS : 404
 
-<b>Response</b>
+#### Response
 
     {
      "header" : {
@@ -331,12 +321,12 @@ MESSAGE : INVALID_SCHEDULE_INDEX
     
 </br>    
 
-### 3. 사용자 일정 관리 (조회, 등록, 제거) : 잘못된 날짜 포맷 (올바른 표기는 yyyy.MM.dd)
+## 3. 사용자 일정 관리 (조회, 등록, 제거) : 잘못된 날짜 포맷 (올바른 표기는 yyyy.MM.dd)
 
 MESSAGE : INVALID_DATE_FORMAT
 </br>HTTP STATUS : 400
 
-<b> Response </b>
+#### Response
 
     {
      "header" : {
@@ -352,12 +342,12 @@ MESSAGE : INVALID_DATE_FORMAT
 
 </br>
 
-### 4. 사용자 일정 관리 (조회, 등록, 제거) : 존재하지 않는 사용자의 일정 관리 요청
+## 4. 사용자 일정 관리 (조회, 등록, 제거) : 존재하지 않는 사용자의 일정 관리 요청
 
 MESSAGE : NOT_FOUND_USER
 </br>HTTP STATUS : 404
 
-<b> Response </b>
+#### Response
 
     {
      "header" : {
@@ -373,12 +363,12 @@ MESSAGE : NOT_FOUND_USER
 
 </br>
 
-### 5. 정의되지 않은 오류
+## 5. 정의되지 않은 오류
 
 MESSAGE : UNDEFINED_ERROR
 </br>HTTP STATUS : 404
 
-<b> Response </b>
+#### Response
 
     {
      "header" : {
