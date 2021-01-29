@@ -2,6 +2,6 @@ package com.ecsimsw.dailyTracker.Domain.Exception;
 
 public class InvalidIndexException extends IllegalArgumentException {
     public InvalidIndexException() {
-        super("Invalid index");
+        super("INVALID_SCHEDULE_INDEX");
     }
 }

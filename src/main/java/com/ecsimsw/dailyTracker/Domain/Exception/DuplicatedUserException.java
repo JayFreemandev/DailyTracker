@@ -2,6 +2,6 @@ package com.ecsimsw.dailyTracker.Domain.Exception;
 
 public class DuplicatedUserException extends IllegalArgumentException {
     public DuplicatedUserException() {
-        super("User already exist");
+        super("ALREADY_REGISTERED_USER");
     }
 }
