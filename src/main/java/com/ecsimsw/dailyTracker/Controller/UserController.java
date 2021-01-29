@@ -1,10 +1,9 @@
 package com.ecsimsw.dailyTracker.Controller;
 
-import com.ecsimsw.dailyTracker.ResponseEntity.Message;
-import com.ecsimsw.dailyTracker.ResponseEntity.ResponseEntityFactory;
+import com.ecsimsw.dailyTracker.Domain.ResponseEntity.Message;
+import com.ecsimsw.dailyTracker.Domain.ResponseEntity.ResponseEntityFactory;
 import com.ecsimsw.dailyTracker.Service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
