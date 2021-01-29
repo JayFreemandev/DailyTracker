@@ -74,7 +74,7 @@ port :
 
 </br>
 <details markdown="1">
-<summary> 보다 자세한 가이드 </summary>
+<summary> <b> 보다 자세한 가이드 </b> </summary>
 
 ## 서버 확인
 
@@ -269,6 +269,8 @@ port :
     }
 
 </details>   
+
+</br>
 
 ## 에러 코드
 
