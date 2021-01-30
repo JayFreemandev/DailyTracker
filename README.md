@@ -66,7 +66,7 @@ port :
 |목적|HTTP-method|URL-Pattern|Paramter-Value|
 |---|---|---|---|
 |서버 확인|GET|/hello||
-|사용자 등록|GET|/user/register/{name}||
+|사용자 등록|POST|/user/register/{name}||
 |사용자 목록|GET|/user/list||
 |일정 등록|POST|/schedule/{user}/{date}|content|
 |일정 검색|GET|/schedule/{user}/{date}||
@@ -390,7 +390,7 @@ MESSAGE : UNDEFINED_ERROR
 
   김진환 ([Tistory](https://ecsimsw.tistory.com) / [Github](https://github.com/ecsimsw))
 
-  개발 환경 : (Java11, Spring boot 2.1.7, JPA, Gradle)
+  개발 환경 : Java11, Spring boot 2.1.7, JPA, Gradle
 
   날짜 : 2021.01
 
